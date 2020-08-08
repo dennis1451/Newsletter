@@ -4,7 +4,7 @@ const request = require("request")
 const https = require("https")
 const app = express()
 
-
+var HOME_PAGE = "/"
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -47,6 +47,7 @@ app.post("/", function(req, res) {
     }
     else{
       res.sendFile(__dirname + "/failure.html")
+      console.log(response);
     }
 
 
@@ -59,8 +60,9 @@ app.post("/", function(req, res) {
   request.end()
 })
 
-app.post("/failure", function (req, res){
-  app.redirect("/")
+app.post("/failure.html", function (req, res){
+  res.redirect(HOME_PAGE)
+
 })
 
 app.listen(process.env.PORT || 3000, function(res) {
