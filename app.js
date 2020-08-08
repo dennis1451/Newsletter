@@ -3,9 +3,10 @@ const bodyParser = require("body-parser")
 const request = require("request")
 const https = require("https")
 const app = express()
+const myKey = require("./config")
 
 var HOME_PAGE = "/"
-var myKey = config.MY_KEY
+//var myKey = config.MY_KEY
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -40,7 +41,7 @@ app.post("/", function(req, res) {
 
   const options = {
     method: "POST",
-    auth: "DennisB:"+myKey
+    auth: "DennisB:"+myKey.MY_KEY
   }
   const request = https.request(url, options, function(response) {
     if (response.statusCode == 200){
@@ -48,7 +49,7 @@ app.post("/", function(req, res) {
     }
     else{
       res.sendFile(__dirname + "/failure.html")
-      console.log(response);
+      console.log(response.statusCode);
     }
 
 
