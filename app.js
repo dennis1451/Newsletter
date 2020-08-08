@@ -5,6 +5,7 @@ const https = require("https")
 const app = express()
 
 var HOME_PAGE = "/"
+var myKey = config.MY_KEY
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -39,7 +40,7 @@ app.post("/", function(req, res) {
 
   const options = {
     method: "POST",
-    auth: "DennisB:06357264caf569e21319c7d8426c278f-us17"
+    auth: "DennisB:"+myKey
   }
   const request = https.request(url, options, function(response) {
     if (response.statusCode == 200){
@@ -68,6 +69,3 @@ app.post("/failure.html", function (req, res){
 app.listen(process.env.PORT || 3000, function(res) {
   console.log("App is listening on port 3000");
 })
-//
-// // Api Key : 06357264caf569e21319c7d8426c278f-us17
-// //List id : 86c0a27bec
